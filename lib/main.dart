@@ -1,26 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_chat_example/api/firebase_api.dart';
-import 'package:firebase_chat_example/page/chat_page.dart';
 import 'package:firebase_chat_example/page/chats_page.dart';
 import 'package:firebase_chat_example/users.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 
-Future main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseApi.addRandomUsers(Users.initUsers);
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  static final String title = 'Firebase Chat';
+  static const String title = 'Firebase Chat';
+
+  const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: title,
-        theme: ThemeData(primarySwatch: Colors.deepOrange),
-        home: ChatsPage(),
-      );
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: title,
+      theme: ThemeData(primarySwatch: Colors.deepOrange),
+      home: const ChatsPage(),
+    );
+  }
 }
